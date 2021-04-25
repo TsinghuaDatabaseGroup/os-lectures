@@ -26,6 +26,11 @@
 \frametitle{提纲} % Table of contents slide, comment this block out to remove it
 \tableofcontents % Throughout your presentation, if you choose to use \section{} and \subsection{} commands, these will automatically be printed on this slide as an overview of your presentation
 
+\begin{figure}
+\includegraphics[width=0.2\linewidth]{figs/ha.jpg}
+\includegraphics[width=0.37\linewidth]{figs/ft.jpg}
+\includegraphics[width=0.33\linewidth]{figs/dr.jpg}
+\end{figure}
 \end{frame}
 %----------------------------------------------
 %%  PRESENTATION SLIDES
@@ -51,14 +56,33 @@
     \item 硬件冗余：多台机器备份、故障自检测；纠错码
     \item 软件冗余：多套备份：主备，多活
     \item 自监控、自诊断技术
-\end{itemize}  \pause
+    \item 恢复设计
+\end{itemize} 
 \end{itemize}
 \end{frame}
 
 
+\begin{frame}[fragile]
+    \frametitle{可用性 Availability  vs 可靠性 Reliability}
+%    \framesubtitle{xxxx}
+%% itemize
+\begin{itemize}
+    \item 可靠性：在规格规定条件下，系统执行规格的能力。例如如果网络故障，系统不能出现故障。
+   \begin{itemize}
+    \item 可靠性是指系统可以无故障地持续运行，是一个持续的状态
+    \item 如果一个系统从来不崩溃，但是每年要停机两星期，那么它是高度可靠的，但是可用性只有96%。
+   \end{itemize}
+   \item 可用性：软件系统在投入使用时，实现其指定系统功能的概率
+\begin{itemize}
+    \item 在任何给定的时刻都能及时地工作
+    \item 如果系统在每小时崩溃1ms，那么它的可用性就超过99.9999\%，但是它还是高度不可靠
+\end{itemize}
+\end{itemize}
+\end{frame}
+
 
 \begin{frame}[fragile]
-    \frametitle{高可用HA指标}
+    \frametitle{高可靠性指标}
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
@@ -85,6 +109,8 @@
 
 
 
+
+
 \subsection{容错（Fault Tolerant，FT）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
@@ -104,23 +130,30 @@
 
 
 
-\subsection{容错（Fault Tolerant，FT）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+\subsection{容灾（Disaster Recovery，DR）} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
 %----------------------------------------------
 \begin{frame}[fragile]
     \frametitle{容灾（Disaster Recovery，DR）}
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
-    \item 容灾目的：当系统发生重大灾难时，按照恢复计划挽救业务，恢复关键业务系统，确保业务不被中断 \pause
+    \item 容灾目的：当系统发生重大灾难时，按照恢复计划挽救数据、恢复业务，力争业务不被中断 \pause
     \item 容灾指标: 
  \begin{itemize}
     \item RPO(Recovery Point Objective）：恢复数据的时间点和最新数据的时间点之间的差值；RPO=0意味数据无丢失
     \item RTO (Recovery Time Objective）：从服务停止到服务恢复所需时间；RTO=0意味无宕机时间
     \item 完美系统希望RPO=0，RTO=0
 \end{itemize}  \pause
+   \item 容灾方法：
+ \begin{itemize}
+    \item 备份恢复：定期备份数据，根据数据恢复
+    \item 冗余设计：多副本，全球多副本
+\end{itemize} 
 \end{itemize}
 \end{frame}
 
+
+\iffalse
 %----------------------------------------------
 % ###   18.1  File Allocation Table (FAT)
 % 
@@ -346,6 +379,8 @@
 
     Figure shows all of the folder entries for the file {\color{red}Thequi～1.fox}, which has a long name of {\color{red}The quick brown.fox}. The long name is in Unicode, so each character in the name uses two bytes in the folder entry. The {\color{red}attribute field} for the long name entries has the value {\color{red}0x0F}. The attribute field for the short name is {\color{red}0x20}.
 \end{frame}
+
+\fi
 %----------------------------------------------
 % ##### Folder Entries for the long filename
 % 
