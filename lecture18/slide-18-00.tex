@@ -29,7 +29,7 @@
 \begin{figure}
 \includegraphics[width=0.2\linewidth]{figs/ha.jpg}
 \includegraphics[width=0.37\linewidth]{figs/ft.jpg}
-\includegraphics[width=0.33\linewidth]{figs/dr.jpg}
+\includegraphics[width=0.34\linewidth]{figs/dr.jpg}
 \end{figure}
 \end{frame}
 %----------------------------------------------
@@ -54,9 +54,9 @@
     \item 高可用实现手段: 
  \begin{itemize}
     \item 硬件冗余：多台机器备份、故障自检测；纠错码
-    \item 软件冗余：多套备份：主备，多活
+    \item 软件冗余：多套软件备份：主备，两地三中心，跨城市多活
     \item 自监控、自诊断技术
-    \item 恢复设计
+    \item 恢复设计方案
 \end{itemize} 
 \end{itemize}
 \end{frame}
@@ -67,15 +67,15 @@
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
-    \item 可靠性：在规格规定条件下，系统执行规格的能力。例如如果网络故障，系统不能出现故障。
+    \item 可靠性：在规格允许条件下，系统执行能力。例如网络故障，系统不出现故障。
    \begin{itemize}
     \item 可靠性是指系统可以无故障地持续运行，是一个持续的状态
-    \item 如果一个系统从来不崩溃，但是每年要停机两星期，那么它是高度可靠的，但是可用性只有96%。
+    \item 如果一个系统从来不崩溃，但是每年要停机两星期，那么它是高度可靠的，但是可用性只有96\%。
    \end{itemize}
    \item 可用性：软件系统在投入使用时，实现其指定系统功能的概率
 \begin{itemize}
-    \item 在任何给定的时刻都能及时地工作
-    \item 如果系统在每小时崩溃1ms，那么它的可用性就超过99.9999\%，但是它还是高度不可靠
+    \item 在任何给定的时刻都能工作
+    \item 如果系统在每小时崩溃1ms，那么它的可用性就超过99.9999\%，但它高度不可靠
 \end{itemize}
 \end{itemize}
 \end{frame}
@@ -118,13 +118,13 @@
 %    \framesubtitle{xxxx}
 %% itemize
 \begin{itemize}
-    \item 容错目的：当系统发生故障时，仍可以继续运行，做到零宕机时间。但运行水平可能有所下降（例如只读、最小安全模式） \pause
+    \item 容错目的：当系统发生故障时，仍可以继续运行，做到零宕机时间。但运行水平可能有所下降（例如只读、最小服务模式） \pause
     \item 容错方法: 
  \begin{itemize}
-    \item 硬件冗余：多台机器备份
-    \item 软件冗余：多套备份：主备，多活
-    \item 自监控、自诊断技术
-\end{itemize}  \pause
+    \item 故障检测，故障诊断，故障恢复
+    \item 冗余设计
+    \item 检查点技术checkpoint（从上次检查点恢复）
+\end{itemize}  
 \end{itemize}
 \end{frame}
 
@@ -151,6 +151,47 @@
 \end{itemize} 
 \end{itemize}
 \end{frame}
+
+
+\subsection{高可靠系统设计思路} % A subsection can be created just before a set of slides with a common theme to further break down your presentation into chunks
+%----------------------------------------------
+\begin{frame}[fragile]
+    \frametitle{高可靠系统设计思路}
+\begin{itemize}
+    \item 冗余设计（软件、硬件、带宽冗余）
+    \item 快速恢复设计（无状态设计）
+    \item 容错、灾备
+    \item 隔离（进程、状态、租户）
+    \item 过载保护（限流、熔断、有损服务）
+    \item 错误重试策略，避免流量风暴
+    \item 去关键路径、去中心化、避免单点故障
+    \item 负载均衡（load balance）
+    \item 看门狗设计
+    \item 安全编码
+\end{itemize} 
+\end{frame}
+
+
+
+\end{document}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 \iffalse
@@ -393,4 +434,3 @@
 %   \end{figure}
 % ![FAT-filename](figs/FAT-filename.png)
 %----------------------------------------------
-\end{document}
